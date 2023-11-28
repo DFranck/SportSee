@@ -1,0 +1,34 @@
+.dashboard {
+    max-width: 1126px;
+    margin: 0 auto;
+
+    .dashboard-header {
+        margin: 50px 0;
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    }
+
+    .dashboard-content {
+        display: flex;
+        gap: 30px;
+
+        .dashboard-left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .dashboard-bottom-left-content {
+                display: flex;
+                gap: 30px;
+            }
+        }
+
+        .dashboard-right-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}

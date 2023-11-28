@@ -1,0 +1,17 @@
+@use '../../../styles/variables' as var;
+
+.title-container {
+    h1 span {
+        color: var.$redColor;
+    }
+
+    h1 {
+        font-size: 48px;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 400;
+    }
+}

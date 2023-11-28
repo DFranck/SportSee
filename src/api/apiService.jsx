@@ -1,25 +1,20 @@
-import userInfosMock from "../../mocks/userInfosMock.json";
-import userAverageSessionsMock from "../../mocks/userAverageSessionsMock.json";
-import userActivityMock from "../../mocks/userActivityMock.json";
-import userPerformanceMock from "../../mocks/userPerformanceMock.json";
+import userInfosMock from "../mocks/userInfosMock.json";
+import userAverageSessionsMock from "../mocks/userAverageSessionsMock.json";
+import userActivityMock from "../mocks/userActivityMock.json";
+import userPerformanceMock from "../mocks/userPerformanceMock.json";
 
 const BASE_URL = "http://localhost:3000";
 
 export async function getUserInfos(userId) {
-  console.log("getUserInfos appelé pour l'utilisateur", userId);
   try {
     const response = await fetch(`${BASE_URL}/user/${userId}`);
-    console.log("Réponse reçue", response);
     if (response.ok) {
       const { data } = await response.json();
-      console.log("infos", data.userInfos);
-      return data.userInfos;
+      return data;
     } else {
       console.error("Réponse API non réussie pour getUserInfos", response);
       const mockUser = userInfosMock.find((user) => user.id === Number(userId));
-      console.log("Retourne les données userInfosMock", mockUser);
-
-      return mockUser ? mockUser.userInfos : null;
+      return mockUser ? mockUser : null;
     }
   } catch (error) {
     // console.error(
@@ -27,8 +22,7 @@ export async function getUserInfos(userId) {
     //   error
     // );
     const mockUser = userInfosMock.find((user) => user.id === Number(userId));
-    console.log("Retourne les données userInfosMock en cas d'erreur", mockUser);
-    return mockUser.userInfos;
+    return mockUser;
   }
 }
 
@@ -37,11 +31,13 @@ export async function getUserActivity(userId) {
     const response = await fetch(`${BASE_URL}/user/${userId}/activity`);
     if (response.ok) {
       const { data } = await response.json();
-      console.log("Activity", data.sessions);
-      return data.sessions;
+      return data;
     } else {
       console.error("Réponse API non réussie pour getUserActivity", response);
-      return userActivityMock;
+      const mockUser = userActivityMock.find(
+        (user) => user.userId === Number(userId)
+      );
+      return mockUser;
     }
   } catch (error) {
     // console.error(
@@ -51,11 +47,7 @@ export async function getUserActivity(userId) {
     const mockUser = userActivityMock.find(
       (user) => user.userId === Number(userId)
     );
-    console.log(
-      "Retourne les donnée userActivityMock en cas d'erreur",
-      mockUser
-    );
-    return mockUser.sessions;
+    return mockUser;
   }
 }
 
@@ -70,14 +62,20 @@ export async function getUserAverageSessions(userId) {
         "Réponse API non réussie pour getUserAverageSessions",
         response
       );
-      return userAverageSessionsMock;
+      const mockUser = userAverageSessionsMock.find(
+        (user) => user.userId === Number(userId)
+      );
+      return mockUser;
     }
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des sessions moyennes utilisateur",
       error
     );
-    return userAverageSessionsMock;
+    const mockUser = userAverageSessionsMock.find(
+      (user) => user.userId === Number(userId)
+    );
+    return mockUser;
   }
 }
 
@@ -86,7 +84,6 @@ export async function getUserPerformance(userId) {
     const response = await fetch(`${BASE_URL}/user/${userId}/performance`);
     if (response.ok) {
       const { data } = await response.json();
-      console.log("performance", data);
       return data;
     } else {
       console.error(
