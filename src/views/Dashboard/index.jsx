@@ -23,9 +23,9 @@ function Dashboard({ userId }) {
               userActivity={userActivity}
             />
             <div className="dashboard-bottom-left-content">
-              <DashboardTimeChart userId={userId} data={userAverageSessions} />
-              <DashboardRadarChart />
-              <DashboardKPIChart />
+              <DashboardTimeChart data={userAverageSessions} />
+              <DashboardRadarChart data={userPerformance} />
+              <DashboardKPIChart score={user.score} />
             </div>
           </div>
           <div className="dashboard-right-content">

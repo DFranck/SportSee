@@ -1,5 +1,7 @@
+@use '../../../styles/variables' as var;
+
 .dashboard-KPI-container {
     width: 258px;
     height: 263px;
-    background: grey;
+    background: rgba(var.$greyColor, 0.05)
 }

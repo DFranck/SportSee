@@ -1,5 +1,18 @@
+@use '../../../styles/variables' as var;
+
 .dashboard-time-container {
     width: 258px;
     height: 263px;
-    // background: grey;
+    background: var.$redColor;
+    position: relative;
+
+    .dashboard-time-title {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: rgba(white, .5);
+        font-size: 15px;
+        font-weight: 500;
+        width: 150px;
+    }
 }

@@ -90,13 +90,19 @@ export async function getUserPerformance(userId) {
         "Réponse API non réussie pour getUserPerformance",
         response
       );
-      return userPerformanceMock;
+      const mockUser = userPerformanceMock.find(
+        (user) => user.userId === Number(userId)
+      );
+      return mockUser;
     }
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des performances utilisateur",
       error
     );
-    return userPerformanceMock;
+    const mockUser = userPerformanceMock.find(
+      (user) => user.userId === Number(userId)
+    );
+    return mockUser;
   }
 }

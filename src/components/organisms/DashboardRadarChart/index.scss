@@ -1,5 +1,7 @@
+@use '../../../styles/variables' as var;
+
 .dashboard-radar-container {
     width: 258px;
     height: 263px;
-    background: grey;
+    background: #282d30;
 }
