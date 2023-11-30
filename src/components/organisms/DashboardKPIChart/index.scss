@@ -3,5 +3,31 @@
 .dashboard-KPI-container {
     width: 258px;
     height: 263px;
-    background: rgba(var.$greyColor, 0.05)
+    background: rgba(var.$greyColor, 0.05);
+    position: relative;
+    border-radius: 5px;
+
+    .dashboard-KPI-title {
+        position: absolute;
+        top: 24px;
+        left: 30px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .dashboard-KPI-score {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        width: 60px;
+
+        span {
+            font-size: 26px;
+            font-weight: 700;
+        }
+    }
 }

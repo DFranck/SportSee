@@ -17,6 +17,11 @@ const DashboardKPIChart = ({ score }) => {
 
   return (
     <div className="dashboard-KPI-container">
+      <h2 className="dashboard-KPI-title">Score</h2>
+      <h3 className="dashboard-KPI-score">
+        <span>{`${score * 100}%`}</span>
+        {` de votre objectif`}
+      </h3>
       <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart
           innerRadius="70%"

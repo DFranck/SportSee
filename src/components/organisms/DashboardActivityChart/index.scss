@@ -5,6 +5,7 @@
     height: 320px;
     background: rgba(var.$greyColor, 0.05);
     position: relative;
+    border-radius: 5px;
 
     .graph-bar-header {
         display: flex;

@@ -6,11 +6,19 @@
     background: rgba(var.$greyColor, 0.05);
     width: 258px;
     height: 124px;
+    border-radius: 5px;
 
     .icon {
         width: 60px;
         height: 60px;
         margin: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            margin: 60px;
+        }
 
         &.Calories {
             background: rgba(var.$redColor, .1);
