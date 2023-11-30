@@ -4,7 +4,6 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   PolarGrid,
-  Legend,
   Radar,
   RadarChart,
 } from "recharts";
@@ -33,7 +32,6 @@ function DashboardRadarChart({ data }) {
           />
           <PolarRadiusAxis opacity={0} />
           <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
-          <Legend />
         </RadarChart>
       </ResponsiveContainer>
     </div>

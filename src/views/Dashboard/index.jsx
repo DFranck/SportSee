@@ -5,7 +5,7 @@ import DashboardKPIChart from "../../components/organisms/DashboardKPIChart";
 import DashboardRadarChart from "../../components/organisms/DashboardRadarChart";
 import DashboardTimeChart from "../../components/organisms/DashboardTimeChart";
 import useUser from "../../hooks/useUser";
-import "../../styles/dashboard.scss";
+import "./dashboard.scss";
 
 function Dashboard({ userId }) {
   const { user, userActivity, userAverageSessions, userPerformance } =
