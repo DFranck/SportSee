@@ -17,10 +17,10 @@ export async function getUserInfos(userId) {
       return mockUser ? mockUser : null;
     }
   } catch (error) {
-    // console.error(
-    //   "Erreur lors de la récupération des infos utilisateur",
-    //   error
-    // );
+    console.error(
+      "Erreur lors de la récupération des infos utilisateur",
+      error
+    );
     const mockUser = userInfosMock.find((user) => user.id === Number(userId));
     return mockUser;
   }
@@ -40,10 +40,10 @@ export async function getUserActivity(userId) {
       return mockUser;
     }
   } catch (error) {
-    // console.error(
-    //   "Erreur lors de la récupération des activités utilisateur",
-    //   error
-    // );
+    console.error(
+      "Erreur lors de la récupération des activités utilisateur",
+      error
+    );
     const mockUser = userActivityMock.find(
       (user) => user.userId === Number(userId)
     );

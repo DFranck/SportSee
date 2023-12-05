@@ -23,15 +23,15 @@ function DashboardNutritionalCard({ keyData }) {
   });
   return dataArray.map((data) => {
     return (
-      <div className="NutritionalCard" key={data.key}>
-        <div className={`${data.key} icon`}>
+      <section className="NutritionalCard" key={data.key}>
+        <figure className={`${data.key} icon`}>
           <img src={data.img} alt={`${data.key} icone`} />
-        </div>
+        </figure>
         <div className="text">
           <h3>{`${data.value}${data.unit}`}</h3>
           <p>{data.key}</p>
         </div>
-      </div>
+      </section>
     );
   });
 }

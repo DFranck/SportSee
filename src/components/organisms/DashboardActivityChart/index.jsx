@@ -10,24 +10,24 @@ import {
 } from "recharts";
 
 function DashboardActivityChart({ userActivity }) {
+  const dataFormater = () => {
+    const formatedData = userActivity.sessions
+      .map((sessions) => ({ ...sessions, date: new Date(sessions.day) }))
+      .sort((a, b) => a.date - b.date)
+      .slice(-10)
+      .map((sessions, index) => {
+        return {
+          ...sessions,
+          day: index + 1,
+        };
+      });
+    return formatedData;
+  };
+  const formatedData = dataFormater();
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div
-          className="custom-tooltip"
-          style={{
-            backgroundColor: "#E60000",
-            width: "39px",
-            height: "63px",
-            color: "white",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: "20px",
-            textAlign: "center",
-            fontSize: "7px",
-          }}
-        >
+        <div className="custom-tooltip">
           <p>{`${payload[0].value} kg`}</p>
           <p>{`${payload[1].value} KCal`}</p>
         </div>
@@ -36,22 +36,22 @@ function DashboardActivityChart({ userActivity }) {
     return null;
   };
   return (
-    <div className="graph-bar-container">
-      <div className="graph-bar-header">
+    <section className="graph-bar-container">
+      <header className="graph-bar-header">
         <div className="graph-bar-header-left-part">
           <h2>Activité quotidienne</h2>
         </div>
-        <div className="graph-bar-header-right-part">
+        <legend className="graph-bar-header-right-part">
           <span className="black circle"></span>
           <h3>Poids (kg)</h3>
           <span className="red circle"></span>
           <h3>Calories brûlées (KCal)</h3>
-        </div>
-      </div>
+        </legend>
+      </header>
       <div className="graph-bar-content">
         <ResponsiveContainer width="100%" height={200}>
-          {userActivity ? (
-            <BarChart data={userActivity.sessions} barGap={10}>
+          {formatedData ? (
+            <BarChart data={formatedData} barGap={10}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis
                 dataKey="day"
@@ -100,7 +100,7 @@ function DashboardActivityChart({ userActivity }) {
           )}
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 }
 

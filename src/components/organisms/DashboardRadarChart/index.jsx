@@ -17,10 +17,8 @@ function DashboardRadarChart({ data }) {
       kind: activityName,
     });
   }
-
-  console.log(performanceData);
   return (
-    <div className="dashboard-radar-container">
+    <section className="dashboard-radar-container">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={performanceData} cx="50%" cy="50%" outerRadius="70%">
           <PolarGrid />
@@ -34,7 +32,7 @@ function DashboardRadarChart({ data }) {
           <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
         </RadarChart>
       </ResponsiveContainer>
-    </div>
+    </section>
   );
 }
 

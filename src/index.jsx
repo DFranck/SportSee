@@ -6,6 +6,6 @@ import "./styles/global.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Dashboard userId="18" />
+    <Dashboard userId="12" />
   </React.StrictMode>
 );

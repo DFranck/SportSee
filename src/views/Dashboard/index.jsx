@@ -12,27 +12,27 @@ function Dashboard({ userId }) {
     useUser(userId);
   if (user) {
     return (
-      <div className="dashboard">
-        <div className="dashboard-header">
+      <main className="dashboard">
+        <section className="dashboard-header">
           <DashboardTitle user={user} />
-        </div>
-        <div className="dashboard-content">
-          <div className="dashboard-left-content">
+        </section>
+        <section className="dashboard-content">
+          <section className="dashboard-left-content">
             <DashboardActivityChart
               userId={userId}
               userActivity={userActivity}
             />
-            <div className="dashboard-bottom-left-content">
+            <section className="dashboard-bottom-left-content">
               <DashboardTimeChart data={userAverageSessions} />
               <DashboardRadarChart data={userPerformance} />
-              <DashboardKPIChart score={user.score} />
-            </div>
-          </div>
-          <div className="dashboard-right-content">
+              <DashboardKPIChart user={user} />
+            </section>
+          </section>
+          <section className="dashboard-right-content">
             <DashboardNutritionalCard keyData={user.keyData} />
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </main>
     );
   } else {
     return "chargement";

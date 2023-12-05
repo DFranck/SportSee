@@ -28,7 +28,7 @@ function DashboardTimeChart({ data }) {
     return null;
   };
   return (
-    <div className="dashboard-time-container">
+    <section className="dashboard-time-container">
       <h2 className="dashboard-time-title">Durée moyenne des sessions</h2>
       <ResponsiveContainer className="dashboard-time-content">
         <LineChart data={data.sessions}>
@@ -44,7 +44,7 @@ function DashboardTimeChart({ data }) {
             tickLine={false}
             tick={{ fill: "#ffffff", opacity: "0.5" }}
           />
-          <YAxis hide={true} domain={[0, "dataMax + 50"]} />
+          <YAxis hide={true} domain={[-10, "dataMax + 50"]} />
           <Line
             type="natural"
             dataKey="sessionLength"
@@ -55,7 +55,7 @@ function DashboardTimeChart({ data }) {
           <Tooltip content={<CustomTooltip />} />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </section>
   );
 }
 

@@ -8,6 +8,13 @@
     height: 124px;
     border-radius: 5px;
 
+    @media screen and (max-width:1200px) {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+
     .icon {
         width: 60px;
         height: 60px;

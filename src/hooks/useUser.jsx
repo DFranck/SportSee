@@ -29,6 +29,7 @@ function useUser(userId) {
     }
     getUserData();
   }, [userId]);
+
   return userData ? userData : "loading";
 }
 

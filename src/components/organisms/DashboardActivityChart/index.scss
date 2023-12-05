@@ -57,5 +57,18 @@
         top: 60%;
         left: 52%;
         transform: translate(-50%, -50%);
+
+        .custom-tooltip {
+            background-color: #E60000;
+            width: 39px;
+            height: 63px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+            font-size: 7px;
+        }
     }
 }

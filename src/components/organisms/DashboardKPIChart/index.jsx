@@ -6,7 +6,8 @@ import {
   RadialBar,
 } from "recharts";
 
-const DashboardKPIChart = ({ score }) => {
+const DashboardKPIChart = ({ user }) => {
+  const score = user.score ? user.score : user.todayScore;
   const data = [
     {
       name: "Score",
@@ -16,7 +17,7 @@ const DashboardKPIChart = ({ score }) => {
   ];
 
   return (
-    <div className="dashboard-KPI-container">
+    <section className="dashboard-KPI-container">
       <h2 className="dashboard-KPI-title">Score</h2>
       <h3 className="dashboard-KPI-score">
         <span>{`${score * 100}%`}</span>
@@ -46,7 +47,7 @@ const DashboardKPIChart = ({ score }) => {
           />
         </RadialBarChart>
       </ResponsiveContainer>
-    </div>
+    </section>
   );
 };
 
