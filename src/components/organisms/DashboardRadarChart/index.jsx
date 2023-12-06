@@ -38,14 +38,15 @@ function DashboardRadarChart({ performance }) {
   return (
     <section className="dashboard-radar-container">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={formatedData} cx="50%" cy="50%" outerRadius="70%">
-          <PolarGrid />
-          <PolarAngleAxis
-            dataKey="kind"
-            fontSize={12}
-            fontWeight={500}
-            tick={{ fill: "white" }}
-          />
+        <RadarChart
+          data={formatedData}
+          cx="50%"
+          cy="50%"
+          outerRadius="70%"
+          innerRadius="10%"
+        >
+          <PolarGrid radialLines={false} />
+          <PolarAngleAxis dataKey="kind" />
           <PolarRadiusAxis opacity={0} />
           <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
         </RadarChart>

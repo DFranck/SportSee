@@ -3,9 +3,31 @@
 .dashboard-time-container {
     width: 258px;
     height: 263px;
-    background: var.$redColor;
-    position: relative;
     border-radius: 5px;
+    background: red;
+    position: relative;
+
+    .dynamique-background {
+        display: none;
+        width: 258px;
+        height: 263px;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+
+        .dynamique-background-red {
+            border-radius: 5px 0 0 5px;
+            height: 263px;
+            display: block;
+        }
+
+        .dynamique-background-dark {
+            border-radius: 0 5px 5px 0;
+            height: 263px;
+            display: block;
+            background: #e60000;
+        }
+    }
 
     .dashboard-time-title {
         position: absolute;
@@ -25,5 +47,26 @@
             font-weight: 500;
         }
 
+        .recharts-tooltip-cursor {
+            opacity: 0;
+        }
+
+    }
+
+    #line-chart-index {
+        li {
+            color: #ffffff;
+            opacity: 0.5;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        position: absolute;
+        top: 87%;
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

@@ -5,4 +5,14 @@
     height: 263px;
     background: #282d30;
     border-radius: 5px;
+
+    tspan {
+        fill: white;
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+.dashboard-radar-container .recharts-polar-angle-axis-tick.force text {
+    transform: translate(10px, -10px); // Ajustez les valeurs selon vos besoins
 }

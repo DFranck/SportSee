@@ -38,13 +38,7 @@ const DashboardKPIChart = ({ user }) => {
             angleAxisId={0}
             tick={false}
           />
-          <RadialBar
-            background
-            clockWise
-            dataKey="score"
-            cornerRadius={50}
-            fill="#ffffff"
-          />
+          <RadialBar background clockWise dataKey="score" cornerRadius={50} />
         </RadialBarChart>
       </ResponsiveContainer>
     </section>

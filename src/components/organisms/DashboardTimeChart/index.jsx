@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./index.scss";
 import {
   LineChart,
@@ -9,6 +10,10 @@ import {
 } from "recharts";
 
 function DashboardTimeChart({ data }) {
+  const [xCordinate, setXCordinate] = useState(null);
+  const [redBackground, setRedBackground] = useState(0);
+  const [darkBackground, setDarkBackground] = useState(0);
+  const [displayBackground, setDisplayBackground] = useState("none");
   const dataFormater = () => {
     const weekDayInitial = ["L", "M", "M", "J", "V", "S", "D"];
     const formatedData = data.sessions.map((sessions, index) => {
@@ -20,8 +25,9 @@ function DashboardTimeChart({ data }) {
     return formatedData;
   };
   const formatedData = dataFormater();
-  const CustomTooltip = ({ active, payload }) => {
-    if (active) {
+  const CustomTooltip = ({ active, payload, coordinate }) => {
+    if (active && coordinate) {
+      setXCordinate(coordinate.x);
       return (
         <div className="custom-tooltip">
           <p>{payload[0].value} min</p>
@@ -30,8 +36,34 @@ function DashboardTimeChart({ data }) {
     }
     return null;
   };
+  useEffect(() => {
+    setDarkBackground(258 - xCordinate);
+    setRedBackground(xCordinate);
+  }, [xCordinate]);
+  const resetChart = () => {
+    setDarkBackground(0);
+    setRedBackground(0);
+  };
   return (
-    <section className="dashboard-time-container">
+    <section
+      className="dashboard-time-container"
+      onMouseOut={() => resetChart()}
+      onMouseEnter={() =>
+        document
+          .querySelector(".dynamique-background")
+          .setAttribute("display", setDisplayBackground("block"))
+      }
+    >
+      <div className="dynamique-background">
+        <span
+          className="dynamique-background-red"
+          style={{ width: redBackground }}
+        ></span>
+        <span
+          className="dynamique-background-dark"
+          style={{ width: darkBackground, display: displayBackground }}
+        ></span>
+      </div>
       <h2 className="dashboard-time-title">Durée moyenne des sessions</h2>
       <ResponsiveContainer className="dashboard-time-content">
         <LineChart data={formatedData}>
@@ -45,8 +77,8 @@ function DashboardTimeChart({ data }) {
             dataKey="day"
             axisLine={false}
             tickLine={false}
-            padding={{ left: 10, right: 10 }}
-            tick={{ fill: "#ffffff", opacity: "0.5" }}
+            padding={{ left: -5, right: -5 }}
+            opacity={0}
           />
           <YAxis hide={true} domain={[-10, "dataMax + 50"]} />
           <Line
@@ -59,6 +91,15 @@ function DashboardTimeChart({ data }) {
           <Tooltip content={<CustomTooltip />} />
         </LineChart>
       </ResponsiveContainer>
+      <ul id="line-chart-index">
+        <li>L</li>
+        <li>M</li>
+        <li>M</li>
+        <li>J</li>
+        <li>V</li>
+        <li>S</li>
+        <li>D</li>
+      </ul>
     </section>
   );
 }
