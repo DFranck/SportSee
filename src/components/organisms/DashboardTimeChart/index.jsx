@@ -14,6 +14,7 @@ function DashboardTimeChart({ data }) {
   const [redBackground, setRedBackground] = useState(0);
   const [darkBackground, setDarkBackground] = useState(0);
   const [displayBackground, setDisplayBackground] = useState("none");
+  const [radius, setRadius] = useState("0 5px 5px 0");
   const dataFormater = () => {
     const weekDayInitial = ["L", "M", "M", "J", "V", "S", "D"];
     const formatedData = data.sessions.map((sessions, index) => {
@@ -36,10 +37,18 @@ function DashboardTimeChart({ data }) {
     }
     return null;
   };
+  const darkBackgroundStyle = document.querySelector(
+    ".dynamique-background-dark"
+  );
   useEffect(() => {
     setDarkBackground(258 - xCordinate);
     setRedBackground(xCordinate);
-  }, [xCordinate]);
+    if (xCordinate === 0) {
+      setRadius("5px");
+    } else {
+      setRadius("0 5px 5px 0");
+    }
+  }, [xCordinate, darkBackgroundStyle]);
   const resetChart = () => {
     setDarkBackground(0);
     setRedBackground(0);
@@ -61,7 +70,11 @@ function DashboardTimeChart({ data }) {
         ></span>
         <span
           className="dynamique-background-dark"
-          style={{ width: darkBackground, display: displayBackground }}
+          style={{
+            width: darkBackground,
+            display: displayBackground,
+            borderRadius: radius,
+          }}
         ></span>
       </div>
       <h2 className="dashboard-time-title">Durée moyenne des sessions</h2>
