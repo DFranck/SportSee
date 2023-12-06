@@ -24,7 +24,7 @@ function Dashboard({ userId }) {
             />
             <section className="dashboard-bottom-left-content">
               <DashboardTimeChart data={userAverageSessions} />
-              <DashboardRadarChart data={userPerformance} />
+              <DashboardRadarChart performance={userPerformance} />
               <DashboardKPIChart user={user} />
             </section>
           </section>

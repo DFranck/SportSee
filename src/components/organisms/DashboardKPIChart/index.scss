@@ -17,17 +17,20 @@
 
     .dashboard-KPI-score {
         position: absolute;
-        top: 50%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
         font-size: 16px;
-        font-weight: 500;
+        line-height: 26px;
+        font-weight: 700;
         width: 60px;
+        color: var.$greyColor;
 
         span {
+            color: black;
             font-size: 26px;
-            font-weight: 700;
         }
+
     }
 }

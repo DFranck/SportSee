@@ -7,20 +7,38 @@ import {
   Radar,
   RadarChart,
 } from "recharts";
-function DashboardRadarChart({ data }) {
-  let performanceData = [];
-  for (let i = 0; i < data.data.length; i++) {
-    const kindValue = data.data[i].kind;
-    const activityName = data.kind[kindValue];
-    performanceData.push({
-      ...data.data[i],
-      kind: activityName,
+function DashboardRadarChart({ performance }) {
+  const dataFormater = () => {
+    const translateData = [
+      "Cardio",
+      "Energie",
+      "Endurance",
+      "Force",
+      "Vitesse",
+      "Intensité",
+    ];
+    const sortData = {
+      Intensité: 1,
+      Vitesse: 2,
+      Force: 3,
+      Endurance: 4,
+      Energie: 5,
+      Cardio: 6,
+    };
+    const formatedData = performance.data.map((data, index) => {
+      return {
+        ...data,
+        kind: translateData[index],
+      };
     });
-  }
+    formatedData.sort((a, b) => sortData[a.kind] - sortData[b.kind]);
+    return formatedData;
+  };
+  const formatedData = dataFormater();
   return (
     <section className="dashboard-radar-container">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={performanceData} cx="50%" cy="50%" outerRadius="70%">
+        <RadarChart data={formatedData} cx="50%" cy="50%" outerRadius="70%">
           <PolarGrid />
           <PolarAngleAxis
             dataKey="kind"
