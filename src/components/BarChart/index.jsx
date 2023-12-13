@@ -9,21 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function DashboardBarChart({ userActivity }) {
-  const dataFormater = () => {
-    const formatedData = userActivity.sessions
-      .map((sessions) => ({ ...sessions, date: new Date(sessions.day) }))
-      .sort((a, b) => a.date - b.date)
-      .slice(-10)
-      .map((sessions, index) => {
-        return {
-          ...sessions,
-          day: index + 1,
-        };
-      });
-    return formatedData;
-  };
-  const formatedData = dataFormater();
+function DashboardBarChart({ activity }) {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -50,8 +36,8 @@ function DashboardBarChart({ userActivity }) {
       </header>
       <div className="graph-bar-content">
         <ResponsiveContainer width="100%" height={200}>
-          {formatedData ? (
-            <BarChart data={formatedData} barGap={10}>
+          {activity ? (
+            <BarChart data={activity} barGap={10}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis
                 dataKey="day"

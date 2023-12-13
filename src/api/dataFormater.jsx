@@ -1,4 +1,5 @@
 import useUser from "../hooks/useUser";
+import { useEffect, useState } from "react";
 import CaloriesPng from "../assets/images/Calories.png";
 import CarbohydratesPng from "../assets/images/Carbohydrates.png";
 import LipidsPng from "../assets/images/Lipids.png";
@@ -6,18 +7,98 @@ import ProteinsPng from "../assets/images/Proteins.png";
 export const DataFormater = (userId) => {
   const { user, userActivity, userAverageSessions, userPerformance } =
     useUser(userId);
-  let formatedUserData = {};
+  const [isDataFormated, setIsDataFormated] = useState(false);
+  let formatedUserData = null;
+  let formatedActivityData = null;
+  let formatedSessionsData = null;
+  let formatedPerformanceData = null;
   if (user) formatedUserData = userFormater(user);
+  if (userActivity) formatedActivityData = activityFormater(userActivity);
+  if (userAverageSessions)
+    formatedSessionsData = sessionsFormater(userAverageSessions);
+  if (userPerformance)
+    formatedPerformanceData = performanceFormater(userPerformance);
+  useEffect(() => {
+    if (
+      formatedUserData &&
+      formatedActivityData &&
+      formatedSessionsData &&
+      formatedPerformanceData
+    ) {
+      setIsDataFormated(true);
+    }
+  }, [
+    formatedUserData,
+    formatedActivityData,
+    formatedSessionsData,
+    formatedPerformanceData,
+  ]);
   return {
-    user,
-    userActivity,
-    userAverageSessions,
+    isDataFormated,
     userPerformance,
     formatedUserData,
+    formatedActivityData,
+    formatedSessionsData,
+    formatedPerformanceData,
   };
 };
-export const userFormater = (user) => {
-  const score = user.score ? user.score : user.todayScore;
+const performanceFormater = (userPerformance) => {
+  const translateData = [
+    "Cardio",
+    "Energie",
+    "Endurance",
+    "Force",
+    "Vitesse",
+    "Intensité",
+  ];
+  const sortData = {
+    Intensité: 1,
+    Vitesse: 2,
+    Force: 3,
+    Endurance: 4,
+    Energie: 5,
+    Cardio: 6,
+  };
+  const formatedData = userPerformance.data.map((data, index) => {
+    return {
+      ...data,
+      kind: translateData[index],
+    };
+  });
+  formatedData.sort((a, b) => sortData[a.kind] - sortData[b.kind]);
+  return formatedData;
+};
+const sessionsFormater = (userAverageSessions) => {
+  const weekDayInitial = ["L", "M", "M", "J", "V", "S", "D"];
+  const formatedData = userAverageSessions.sessions.map((sessions, index) => {
+    return {
+      ...sessions,
+      day: weekDayInitial[index],
+    };
+  });
+  return formatedData;
+};
+const activityFormater = (userActivity) => {
+  const formatedData = userActivity.sessions
+    .map((sessions) => ({ ...sessions, date: new Date(sessions.day) }))
+    .sort((a, b) => a.date - b.date)
+    .slice(-10)
+    .map((sessions, index) => {
+      return {
+        ...sessions,
+        day: index + 1,
+      };
+    });
+  return formatedData;
+};
+const userFormater = (user) => {
+  const scoreFilter = user.score ? user.score : user.todayScore;
+  const RadialBarChartData = [
+    {
+      name: "Score",
+      score: scoreFilter * 100,
+    },
+  ];
   const translatedKey = {
     calorieCount: "Calories",
     carbohydrateCount: "Glucides",
@@ -41,10 +122,10 @@ export const userFormater = (user) => {
       };
     }
   );
-  const formatedUserData = {
+  const formatedData = {
     ...user,
     NutritionalCardData,
-    score,
+    RadialBarChartData,
   };
-  return formatedUserData;
+  return formatedData;
 };

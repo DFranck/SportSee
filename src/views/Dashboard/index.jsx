@@ -10,35 +10,34 @@ import { Loader } from "../../components/Loader";
 
 function Dashboard({ userId }) {
   const {
-    user,
-    userActivity,
-    userAverageSessions,
-    userPerformance,
     formatedUserData,
+    formatedActivityData,
+    formatedSessionsData,
+    formatedPerformanceData,
+    isDataFormated,
   } = DataFormater(userId);
   DataFormater(userId);
-  console.log(formatedUserData.NutritionalCardData);
-  if (user) {
+  if (isDataFormated) {
     return (
       <main className="dashboard">
         <section className="dashboard-header">
-          <DashboardTitle user={user} />
+          <DashboardTitle userData={formatedUserData} />
         </section>
         <section className="dashboard-content">
           <section className="dashboard-left-content">
-            <DashboardBarChart userId={userId} userActivity={userActivity} />
+            <DashboardBarChart activity={formatedActivityData} />
             <section className="dashboard-bottom-left-content">
-              <DashboardLineChart data={userAverageSessions} />
-              <DashboardRadarChart performance={userPerformance} />
-              <DashboardRadialBarChart user={user} />
+              <DashboardLineChart sessions={formatedSessionsData} />
+              <DashboardRadarChart performance={formatedPerformanceData} />
+              <DashboardRadialBarChart
+                score={formatedUserData.RadialBarChartData}
+              />
             </section>
           </section>
           <section className="dashboard-right-content">
-            {formatedUserData.NutritionalCardData && (
-              <DashboardNutritionalCard
-                NutritionalCardData={formatedUserData.NutritionalCardData}
-              />
-            )}
+            <DashboardNutritionalCard
+              array={formatedUserData.NutritionalCardData}
+            />
           </section>
         </section>
       </main>

@@ -1,6 +1,6 @@
 import "./index.scss";
-function DashboardNutritionalCard({ NutritionalCardData }) {
-  return NutritionalCardData.map((data) => {
+function DashboardNutritionalCard({ array }) {
+  return array.map((data) => {
     return (
       <section className="NutritionalCard" key={data.key}>
         <figure className={`${data.key} icon`}>

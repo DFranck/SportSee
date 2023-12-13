@@ -8,38 +8,11 @@ import {
   RadarChart,
 } from "recharts";
 function DashboardRadarChart({ performance }) {
-  const dataFormater = () => {
-    const translateData = [
-      "Cardio",
-      "Energie",
-      "Endurance",
-      "Force",
-      "Vitesse",
-      "Intensité",
-    ];
-    const sortData = {
-      Intensité: 1,
-      Vitesse: 2,
-      Force: 3,
-      Endurance: 4,
-      Energie: 5,
-      Cardio: 6,
-    };
-    const formatedData = performance.data.map((data, index) => {
-      return {
-        ...data,
-        kind: translateData[index],
-      };
-    });
-    formatedData.sort((a, b) => sortData[a.kind] - sortData[b.kind]);
-    return formatedData;
-  };
-  const formatedData = dataFormater();
   return (
     <section className="dashboard-radar-container">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          data={formatedData}
+          data={performance}
           cx="50%"
           cy="50%"
           outerRadius="70%"

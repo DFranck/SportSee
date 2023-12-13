@@ -9,23 +9,12 @@ import {
   YAxis,
 } from "recharts";
 
-function DashboardLineChart({ data }) {
+function DashboardLineChart({ sessions }) {
   const [xCordinate, setXCordinate] = useState(null);
   const [redBackground, setRedBackground] = useState(0);
   const [darkBackground, setDarkBackground] = useState(0);
   const [displayBackground, setDisplayBackground] = useState("none");
   const [radius, setRadius] = useState("0 5px 5px 0");
-  const dataFormater = () => {
-    const weekDayInitial = ["L", "M", "M", "J", "V", "S", "D"];
-    const formatedData = data.sessions.map((sessions, index) => {
-      return {
-        ...sessions,
-        day: weekDayInitial[index],
-      };
-    });
-    return formatedData;
-  };
-  const formatedData = dataFormater();
   const CustomTooltip = ({ active, payload, coordinate }) => {
     if (active && coordinate) {
       setXCordinate(coordinate.x);
@@ -79,7 +68,7 @@ function DashboardLineChart({ data }) {
       </div>
       <h2 className="dashboard-time-title">Durée moyenne des sessions</h2>
       <ResponsiveContainer className="dashboard-time-content">
-        <LineChart data={formatedData}>
+        <LineChart data={sessions}>
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
               <stop offset="5%" stopColor="#ffffff" stopOpacity={0.5} />

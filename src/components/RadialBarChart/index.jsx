@@ -6,21 +6,12 @@ import {
   RadialBar,
 } from "recharts";
 
-const DashboardRadialBarChart = ({ user }) => {
-  const score = user.score ? user.score : user.todayScore;
-  const data = [
-    {
-      name: "Score",
-      score: score * 100,
-      fill: "#FF0000",
-    },
-  ];
-
+const DashboardRadialBarChart = ({ score }) => {
   return (
     <section className="dashboard-KPI-container">
       <h2 className="dashboard-KPI-title">Score</h2>
       <h3 className="dashboard-KPI-score">
-        <span>{`${score * 100}%`}</span>
+        <span>{`${score[0].score}%`}</span>
         {` de votre objectif`}
       </h3>
       <ResponsiveContainer width="100%" height="100%">
@@ -28,9 +19,10 @@ const DashboardRadialBarChart = ({ user }) => {
           innerRadius="70%"
           outerRadius="90%"
           barSize={10}
-          data={data}
+          data={score}
           startAngle={90}
           endAngle={450}
+          fill="#FF0000"
         >
           <PolarAngleAxis
             type="number"
