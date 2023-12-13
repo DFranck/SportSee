@@ -9,7 +9,7 @@ import {
   YAxis,
 } from "recharts";
 
-function DashboardTimeChart({ data }) {
+function DashboardLineChart({ data }) {
   const [xCordinate, setXCordinate] = useState(null);
   const [redBackground, setRedBackground] = useState(0);
   const [darkBackground, setDarkBackground] = useState(0);
@@ -117,4 +117,4 @@ function DashboardTimeChart({ data }) {
   );
 }
 
-export default DashboardTimeChart;
+export default DashboardLineChart;

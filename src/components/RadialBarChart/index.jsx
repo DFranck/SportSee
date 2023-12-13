@@ -6,7 +6,7 @@ import {
   RadialBar,
 } from "recharts";
 
-const DashboardKPIChart = ({ user }) => {
+const DashboardRadialBarChart = ({ user }) => {
   const score = user.score ? user.score : user.todayScore;
   const data = [
     {
@@ -45,4 +45,4 @@ const DashboardKPIChart = ({ user }) => {
   );
 };
 
-export default DashboardKPIChart;
+export default DashboardRadialBarChart;

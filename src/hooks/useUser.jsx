@@ -13,7 +13,6 @@ function useUser(userId) {
     userAverageSessions: null,
     userPerformance: null,
   });
-  console.log(userData);
   useEffect(() => {
     async function getUserData() {
       const user = await getUserInfos(userId);

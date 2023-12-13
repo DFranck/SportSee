@@ -1,15 +1,23 @@
-import DashboardActivityChart from "../../components/organisms/DashboardActivityChart";
-import DashboardTitle from "../../components/molecules/DashboardTitle";
-import DashboardNutritionalCard from "../../components/molecules/DashboardNutritionalCard";
-import DashboardKPIChart from "../../components/organisms/DashboardKPIChart";
-import DashboardRadarChart from "../../components/organisms/DashboardRadarChart";
-import DashboardTimeChart from "../../components/organisms/DashboardTimeChart";
-import useUser from "../../hooks/useUser";
+import DashboardBarChart from "../../components/BarChart";
+import DashboardTitle from "../../components/DashboardTitle";
+import DashboardNutritionalCard from "../../components/NutritionalCard";
+import DashboardRadialBarChart from "../../components/RadialBarChart";
+import DashboardRadarChart from "../../components/RadarChart";
+import DashboardLineChart from "../../components/LineChart";
 import "./dashboard.scss";
+import { DataFormater } from "../../api/dataFormater";
+import { Loader } from "../../components/Loader";
 
 function Dashboard({ userId }) {
-  const { user, userActivity, userAverageSessions, userPerformance } =
-    useUser(userId);
+  const {
+    user,
+    userActivity,
+    userAverageSessions,
+    userPerformance,
+    formatedUserData,
+  } = DataFormater(userId);
+  DataFormater(userId);
+  console.log(formatedUserData.NutritionalCardData);
   if (user) {
     return (
       <main className="dashboard">
@@ -18,24 +26,25 @@ function Dashboard({ userId }) {
         </section>
         <section className="dashboard-content">
           <section className="dashboard-left-content">
-            <DashboardActivityChart
-              userId={userId}
-              userActivity={userActivity}
-            />
+            <DashboardBarChart userId={userId} userActivity={userActivity} />
             <section className="dashboard-bottom-left-content">
-              <DashboardTimeChart data={userAverageSessions} />
+              <DashboardLineChart data={userAverageSessions} />
               <DashboardRadarChart performance={userPerformance} />
-              <DashboardKPIChart user={user} />
+              <DashboardRadialBarChart user={user} />
             </section>
           </section>
           <section className="dashboard-right-content">
-            <DashboardNutritionalCard keyData={user.keyData} />
+            {formatedUserData.NutritionalCardData && (
+              <DashboardNutritionalCard
+                NutritionalCardData={formatedUserData.NutritionalCardData}
+              />
+            )}
           </section>
         </section>
       </main>
     );
   } else {
-    return "chargement";
+    return <Loader />;
   }
 }
 

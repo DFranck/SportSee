@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function DashboardActivityChart({ userActivity }) {
+function DashboardBarChart({ userActivity }) {
   const dataFormater = () => {
     const formatedData = userActivity.sessions
       .map((sessions) => ({ ...sessions, date: new Date(sessions.day) }))
@@ -104,4 +104,4 @@ function DashboardActivityChart({ userActivity }) {
   );
 }
 
-export default DashboardActivityChart;
+export default DashboardBarChart;
