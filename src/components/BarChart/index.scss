@@ -10,7 +10,7 @@
     .graph-bar-header {
         display: flex;
         justify-content: space-between;
-        padding: 30px;
+        padding: 30px 25px 0 40px;
 
         .graph-bar-header-left-part {
             h2 {
@@ -52,7 +52,7 @@
     }
 
     .graph-bar-content {
-        width: 815px;
+        width: 800px;
         position: absolute;
         top: 60%;
         left: 52%;

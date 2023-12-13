@@ -35,7 +35,7 @@ function DashboardBarChart({ activity }) {
         </legend>
       </header>
       <div className="graph-bar-content">
-        <ResponsiveContainer width="100%" height={200}>
+        <ResponsiveContainer width="98%" height={200}>
           {activity ? (
             <BarChart data={activity} barGap={10}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -45,6 +45,7 @@ function DashboardBarChart({ activity }) {
                 axisLine={false}
                 tickLine={false}
                 tickMargin={15}
+                padding={{ left: -25, right: -25 }}
               />
               <YAxis
                 yAxisId="left"
@@ -54,6 +55,7 @@ function DashboardBarChart({ activity }) {
                 tick={{ fontSize: 14, fill: "#74798C", fontWeight: 500 }}
                 tickCount={4}
                 tickLine={false}
+                tickMargin={30}
               />
               <YAxis
                 yAxisId="right"

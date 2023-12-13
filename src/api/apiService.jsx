@@ -1,7 +1,7 @@
-// import userInfosMock from "../mocks/userInfosMock.json";
-// import userAverageSessionsMock from "../mocks/userAverageSessionsMock.json";
-// import userActivityMock from "../mocks/userActivityMock.json";
-// import userPerformanceMock from "../mocks/userPerformanceMock.json";
+import userInfosMock from "../mocks/userInfosMock.json";
+import userAverageSessionsMock from "../mocks/userAverageSessionsMock.json";
+import userActivityMock from "../mocks/userActivityMock.json";
+import userPerformanceMock from "../mocks/userPerformanceMock.json";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -15,8 +15,8 @@ export async function getUserInfos(userId) {
       "Erreur lors de la récupération des infos utilisateur",
       error
     );
-    // const mockUser = userInfosMock.find((user) => user.id === Number(userId));
-    // return mockUser;
+    const mockUser = userInfosMock.find((user) => user.id === Number(userId));
+    return mockUser;
   }
 }
 
@@ -30,10 +30,10 @@ export async function getUserActivity(userId) {
       "Erreur lors de la récupération des activités utilisateur",
       error
     );
-    // const mockUser = userActivityMock.find(
-    //   (user) => user.userId === Number(userId)
-    // );
-    // return mockUser;
+    const mockUser = userActivityMock.find(
+      (user) => user.userId === Number(userId)
+    );
+    return mockUser;
   }
 }
 
@@ -47,10 +47,10 @@ export async function getUserAverageSessions(userId) {
       "Erreur lors de la récupération des sessions moyennes utilisateur",
       error
     );
-    // const mockUser = userAverageSessionsMock.find(
-    //   (user) => user.userId === Number(userId)
-    // );
-    // return mockUser;
+    const mockUser = userAverageSessionsMock.find(
+      (user) => user.userId === Number(userId)
+    );
+    return mockUser;
   }
 }
 
@@ -64,9 +64,9 @@ export async function getUserPerformance(userId) {
       "Erreur lors de la récupération des performances utilisateur",
       error
     );
-    // const mockUser = userPerformanceMock.find(
-    //   (user) => user.userId === Number(userId)
-    // );
-    // return mockUser;
+    const mockUser = userPerformanceMock.find(
+      (user) => user.userId === Number(userId)
+    );
+    return mockUser;
   }
 }
