@@ -10,14 +10,27 @@ import {
 } from "recharts";
 
 function DashboardLineChart({ sessions }) {
-  const [xCordinate, setXCordinate] = useState(null);
   const [redBackground, setRedBackground] = useState(0);
   const [darkBackground, setDarkBackground] = useState(0);
   const [displayBackground, setDisplayBackground] = useState("none");
   const [radius, setRadius] = useState("0 5px 5px 0");
+  const [activeTooltip, setActiveTooltip] = useState(null);
+  useEffect(() => {
+    if (activeTooltip) {
+      setDarkBackground(258 - activeTooltip.coordinate.x);
+      setRedBackground(activeTooltip.coordinate.x);
+      if (activeTooltip.coordinate.x === 0) {
+        setRadius("5px");
+      } else {
+        setRadius("0 5px 5px 0");
+      }
+      setDisplayBackground("block");
+    } else {
+      resetChart();
+    }
+  }, [activeTooltip]);
   const CustomTooltip = ({ active, payload, coordinate }) => {
     if (active && coordinate) {
-      setXCordinate(coordinate.x);
       return (
         <div className="custom-tooltip">
           <p>{payload[0].value} min</p>
@@ -26,18 +39,6 @@ function DashboardLineChart({ sessions }) {
     }
     return null;
   };
-  const darkBackgroundStyle = document.querySelector(
-    ".dynamique-background-dark"
-  );
-  useEffect(() => {
-    setDarkBackground(258 - xCordinate);
-    setRedBackground(xCordinate);
-    if (xCordinate === 0) {
-      setRadius("5px");
-    } else {
-      setRadius("0 5px 5px 0");
-    }
-  }, [xCordinate, darkBackgroundStyle]);
   const resetChart = () => {
     setDarkBackground(0);
     setRedBackground(0);
@@ -68,7 +69,23 @@ function DashboardLineChart({ sessions }) {
       </div>
       <h2 className="dashboard-time-title">Durée moyenne des sessions</h2>
       <ResponsiveContainer className="dashboard-time-content">
-        <LineChart data={sessions}>
+        <LineChart
+          data={sessions}
+          onMouseMove={({
+            isTooltipActive,
+            activePayload,
+            activeCoordinate,
+          }) => {
+            if (isTooltipActive) {
+              setActiveTooltip({
+                active: isTooltipActive,
+                payload: activePayload,
+                coordinate: activeCoordinate,
+              });
+            }
+          }}
+          onMouseLeave={() => setActiveTooltip(null)}
+        >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
               <stop offset="5%" stopColor="#ffffff" stopOpacity={0.5} />
