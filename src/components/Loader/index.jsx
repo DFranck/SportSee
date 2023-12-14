@@ -7,7 +7,7 @@ export const Loader = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 10000);
+    }, 7000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,7 +22,7 @@ export const Loader = () => {
 
   return (
     <p className="error">
-      Oups, une Erreur est survenue, veuillez réessayer plus tard...
+      Oups, une erreur est survenue, veuillez réessayer plus tard...
     </p>
   );
 };

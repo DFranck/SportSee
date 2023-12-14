@@ -4,7 +4,7 @@ import userActivityMock from "../mocks/userActivityMock.json";
 import userPerformanceMock from "../mocks/userPerformanceMock.json";
 
 const BASE_URL = "http://localhost:3000";
-const mode = "dev";
+const mode = "prod";
 export async function getUserInfos(userId) {
   try {
     const response = await fetch(`${BASE_URL}/user/${userId}`);
@@ -20,7 +20,6 @@ export async function getUserInfos(userId) {
       "Erreur lors de la récupération des infos utilisateur",
       error
     );
-    throw error;
   }
 }
 
@@ -42,7 +41,6 @@ export async function getUserActivity(userId) {
       "Erreur lors de la récupération des activités utilisateur",
       error
     );
-    throw error;
   }
 }
 
@@ -64,7 +62,6 @@ export async function getUserAverageSessions(userId) {
       "Erreur lors de la récupération des sessions moyennes utilisateur",
       error
     );
-    throw error;
   }
 }
 
@@ -85,7 +82,5 @@ export async function getUserPerformance(userId) {
       "Erreur lors de la récupération des performances utilisateur",
       error
     );
-
-    throw error;
   }
 }
