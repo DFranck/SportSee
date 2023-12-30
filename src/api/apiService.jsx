@@ -4,7 +4,7 @@ import userActivityMock from "../mocks/userActivityMock.json";
 import userPerformanceMock from "../mocks/userPerformanceMock.json";
 
 const BASE_URL = "http://localhost:3000";
-const mode = "prod";
+const mode = "dev";
 export async function getUserInfos(userId) {
   try {
     const response = await fetch(`${BASE_URL}/user/${userId}`);
